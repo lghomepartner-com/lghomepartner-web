@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 124" role="img" aria-label="LG Subscribe">
+  <rect x="0" y="0" width="400" height="124" rx="24" fill="#ec3f3f"/>
+  <text x="196" y="80" text-anchor="middle" fill="#ffffff"
+        font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="56">
+    <tspan font-weight="800" letter-spacing="0.5">LG</tspan><tspan dx="13" font-weight="500">Subscribe</tspan><tspan dy="-22" font-size="18" font-weight="600">™</tspan>
+  </text>
+</svg>
