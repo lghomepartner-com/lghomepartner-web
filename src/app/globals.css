@@ -198,11 +198,14 @@ section.alt { background: var(--bg-deep); }
 }
 .p-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
 .p-card .img-wrap {
-  aspect-ratio: 4 / 3; position: relative;
+  height: 185px; position: relative;
   background: #fff;
-  display: grid; place-items: center; padding: 18px;
+  display: grid; place-items: center; padding: 14px 14px 4px;
 }
-.p-card .img-wrap img { max-height: 100%; object-fit: contain; transition: transform .4s; }
+.p-card .img-wrap img { max-height: 167px; max-width: 100%; object-fit: contain; transition: transform .4s; }
+/* full-bleed variant: image covers the whole image zone edge-to-edge */
+.p-card .img-wrap.img-full { padding: 0; }
+.p-card .img-wrap.img-full img { width: 100%; height: 185px; max-height: none; object-fit: cover; }
 .p-card:hover .img-wrap img { transform: scale(1.04); }
 .p-card .img-wrap .fallback { font-size: 64px; }
 .badge {
@@ -212,7 +215,7 @@ section.alt { background: var(--bg-deep); }
   border-radius: 999px; padding: 4px 11px;
 }
 .badge.featured { right: auto; left: 10px; background: var(--orange); }
-.p-card .body { padding: 16px 18px 18px; display: flex; flex-direction: column; flex: 1; }
+.p-card .body { padding: 8px 18px 18px; display: flex; flex-direction: column; flex: 1; }
 .p-card .cat { font-size: 11px; font-weight: 700; letter-spacing: 1px; color: var(--muted); text-transform: uppercase; }
 .p-card h3 { font-size: 15px; margin: 4px 0 4px; font-weight: 600; }
 .p-card:hover h3 { color: var(--red); }
@@ -232,10 +235,16 @@ section.alt { background: var(--bg-deep); }
 }
 .cat-tile:hover { border-color: var(--red); transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .cat-tile .ph { height: 120px; display: grid; place-items: center; }
-.cat-tile .ph img { max-height: 100%; max-width: 82%; object-fit: contain; transition: transform .3s; }
+.cat-tile .ph img { max-height: 120px; max-width: 82%; object-fit: contain; transition: transform .3s; }
+/* full-bleed variant: photo runs edge-to-edge as the tile's header */
+.cat-tile .ph.img-full {
+  margin: -22px -14px 0; height: 142px;
+  border-radius: 20px 20px 0 0; overflow: hidden;
+}
+.cat-tile .ph.img-full img { width: 100%; height: 142px; max-height: none; max-width: none; object-fit: cover; }
 .cat-tile:hover .ph img { transform: scale(1.05); }
 .cat-tile .em { font-size: 44px; line-height: 120px; }
-.cat-tile .nm { font-size: 13.5px; font-weight: 600; color: var(--heading); margin-top: 12px; line-height: 1.35; }
+.cat-tile .nm { font-size: 13.5px; font-weight: 600; color: var(--heading); margin-top: 10px; line-height: 1.35; }
 .cat-tile .ct { font-size: 11.5px; color: var(--muted); }
 
 /* steps */

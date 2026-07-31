@@ -146,7 +146,7 @@ export default function HomePage() {
               return (
                 <Link className="cat-tile" href={`/products?category=${c.slug}`} key={c.slug}>
                   {photo ? (
-                    <div className="ph">
+                    <div className={c.slug === "microwave" ? "ph img-full" : "ph"}>
                       <img src={imageSrc(photo)} alt={c.nameTh} loading="lazy" />
                     </div>
                   ) : (

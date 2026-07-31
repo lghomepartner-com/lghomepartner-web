@@ -12,7 +12,7 @@ export default function ProductCard({ product }: { product: Product }) {
 
   return (
     <Link className="p-card" href={`/products/${encodeURIComponent(product.slug)}`}>
-      <div className="img-wrap">
+      <div className={product.category === "microwave" ? "img-wrap img-full" : "img-wrap"}>
         <ProductImage
           src={imageSrc(product.image)}
           alt={product.name}
