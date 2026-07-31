@@ -9,7 +9,7 @@ const NAV_ITEMS = [
   { href: "/", label: "หน้าหลัก" },
   { href: "/products", label: "สินค้าทั้งหมด" },
   { href: "/calculator", label: "คำนวณเทียบราคา" },
-  { href: "/careship", label: "Care service" },
+  { href: "/careship", label: "LG Care Service" },
   { href: "/faq", label: "ถาม–ตอบ" },
 ];
 
@@ -26,7 +26,7 @@ export default function SiteHeader({ site }: { site: SiteConfig }) {
   return (
     <header className="site-header">
       <div className="promo-bar">
-        🔥 ลด 50% 6 เดือนแรก — แอร์เริ่มต้น ฿299/เดือน · ติดตั้งฟรีทุกสินค้า{" "}
+        ลด 50% 6 เดือนแรก — แอร์เริ่มต้น ฿299/เดือน · ติดตั้งฟรีทุกสินค้า{" "}
         <Link href="/products">ดูสินค้าทั้งหมด →</Link>
       </div>
       <div className="container inner">
@@ -50,7 +50,7 @@ export default function SiteHeader({ site }: { site: SiteConfig }) {
           target="_blank"
           rel="noopener"
         >
-          <span className="line-dot">LINE</span> ปรึกษาฟรี
+          <span className="line-dot">LINE</span> สมัครผ่าน LINE
         </a>
         <button
           className="hamburger"
@@ -66,7 +66,7 @@ export default function SiteHeader({ site }: { site: SiteConfig }) {
       <nav className={`mobile-nav${menuOpen ? " open" : ""}`}>
         {NAV_ITEMS.map((item) => (
           <Link key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>
-            {item.href === "/calculator" ? `🧮 ${item.label}` : item.label}
+            {item.label}
           </Link>
         ))}
         <a href={site.phoneHref}>☎ {site.phone}</a>

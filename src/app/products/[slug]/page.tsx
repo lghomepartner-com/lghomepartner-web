@@ -102,9 +102,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
             featured={p.featured ?? false}
           />
           <div className="detail-info">
-            <div className="cat-line">
-              {cat?.emoji ?? ""} {cat?.nameTh ?? p.category}
-            </div>
+            <div className="cat-line">{cat?.nameTh ?? p.category}</div>
             <h1>{p.name}</h1>
             <div className="model">รุ่น {p.specs["รุ่น"] ?? p.slug}</div>
             {variants.length > 0 && (
@@ -240,7 +238,16 @@ export default async function ProductDetailPage({ params }: PageProps) {
                 </div>
               )}
               <div className="card-box center">
-                <div style={{ fontSize: 40 }}>{cat?.emoji ?? "📦"}</div>
+                {p.image ? (
+                  <img
+                    src={imageSrc(p.image)}
+                    alt={p.name}
+                    style={{ height: 96, objectFit: "contain" }}
+                    loading="lazy"
+                  />
+                ) : (
+                  <div style={{ fontSize: 40 }}>{cat?.emoji ?? "📦"}</div>
+                )}
                 <h2 className="mt-2">สนใจรุ่นนี้?</h2>
                 <p style={{ fontSize: 14 }}>
                   ทักไลน์บอกรุ่นที่สนใจ ทีมงานคำนวณราคา
@@ -248,7 +255,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
                   และแนะนำแผนที่เหมาะกับบ้านคุณ
                 </p>
                 <a className="btn btn-line mt-2" href={site.line} target="_blank" rel="noopener">
-                  <span className="line-dot">LINE</span> แอดไลน์สอบถามเลย
+                  <span className="line-dot">LINE</span> สมัครรุ่นนี้ผ่าน LINE
                 </a>
               </div>
             </div>

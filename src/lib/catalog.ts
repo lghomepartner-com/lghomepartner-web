@@ -1,11 +1,28 @@
 import catalogJson from "@/data/products.json";
-import type { Catalog, Category, Product } from "./types";
+import type { Catalog, Category, Product, ServicePlan } from "./types";
 
 const catalog = catalogJson as unknown as Catalog;
 
+/**
+ * The scraped data repeats some service plans — exact copies, or the same
+ * interval+type at two prices (the differentiator, likely contract term, was
+ * lost). Keep one entry per interval+type, at the cheapest price, so the
+ * catalog cards and the detail page's plan picker always agree.
+ */
+function dedupePlans(p: Product): Product {
+  if (!p.plans?.length) return p;
+  const seen = new Map<string, ServicePlan>();
+  for (const plan of p.plans) {
+    const key = `${plan.interval}|${plan.type}`;
+    const prev = seen.get(key);
+    if (!prev || plan.pricePerMonth < prev.pricePerMonth) seen.set(key, plan);
+  }
+  return { ...p, plans: [...seen.values()] };
+}
+
 export const site = catalog.site;
 export const categories = catalog.categories;
-export const products = catalog.products;
+export const products = catalog.products.map(dedupePlans);
 export const reviews = catalog.reviews;
 export const faqs = catalog.faqs;
 
@@ -37,6 +54,11 @@ export function relatedProducts(p: Product, limit = 4): Product[] {
 /** Categories that actually have products (some are placeholders with count 0). */
 export function nonEmptyCategories(): Category[] {
   return categories.filter((c) => c.productCount > 0);
+}
+
+/** Real product photo representing a category (first product with an image). */
+export function categoryImage(categorySlug: string): string | undefined {
+  return products.find((p) => p.category === categorySlug && p.image)?.image;
 }
 
 /**

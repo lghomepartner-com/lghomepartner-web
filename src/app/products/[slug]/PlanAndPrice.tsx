@@ -28,7 +28,7 @@ export default function PlanAndPrice({ product: p, site }: PlanAndPriceProps) {
           <div className="opt-row">
             {plans.map((plan, i) => (
               <button
-                key={`${plan.interval}-${plan.type}`}
+                key={`${plan.interval}-${plan.type}-${plan.pricePerMonth}-${i}`}
                 className={`opt${i === planIdx ? " active" : ""}`}
                 onClick={() => setPlanIdx(i)}
               >
@@ -43,29 +43,49 @@ export default function PlanAndPrice({ product: p, site }: PlanAndPriceProps) {
         </div>
       )}
       <div className="price-block">
+        <div className="price-label">ค่าบริการรายเดือน</div>
         <div className="now">
           {formatBaht(now)} <small>/เดือน</small>
         </div>
         {showWas && (
           <div style={{ marginTop: 8 }}>
             <span className="was">{formatBaht(p.monthlyPrice)}/เดือน</span>
-            {pct !== null && <span className="save-badge">ลด {pct}%</span>}
+            {pct !== null && <span className="save-badge">ประหยัด {pct}%</span>}
           </div>
         )}
-        {p.promoLabel && <div className="promo-line">🔥 {p.promoLabel}</div>}
-        {showWas && <div className="after-line">หลังโปรโมชัน {formatBaht(p.monthlyPrice)}/เดือน</div>}
+        {p.promoLabel && <div className="promo-line">{p.promoLabel}</div>}
+        {showWas && <div className="after-line">หลังหมดช่วงโปรโมชัน {formatBaht(p.monthlyPrice)}/เดือน</div>}
+        <ul className="included-list">
+          <li><span className="y">✓</span> ติดตั้งฟรีถึงบ้าน โดยช่าง LG</li>
+          <li><span className="y">✓</span> ล้าง ซ่อม อะไหล่ฟรีตลอดสัญญา</li>
+          <li><span className="y">✓</span> ประกันศูนย์ LG {p.warranty || "5 ปี"}</li>
+          <li><span className="y">✓</span> เสียจนซ่อมไม่ได้ เปลี่ยนเครื่องใหม่ตามเงื่อนไข</li>
+        </ul>
         <div className="cta-col">
           <a className="btn btn-line btn-lg" href={site.line} target="_blank" rel="noopener">
-            <span className="line-dot">LINE</span> สนใจ — สอบถามผ่าน LINE
+            <span className="line-dot">LINE</span> สมัครรุ่นนี้ผ่าน LINE
           </a>
           <a className="btn btn-outline" href={site.phoneHref}>
             ☎ โทร {site.phone}
           </a>
           <Link className="btn btn-outline" href={`/calculator?slug=${encodeURIComponent(p.slug)}`}>
-            🧮 เทียบราคากับซื้อขาด
+            เทียบราคากับซื้อขาด
           </Link>
-          <div className="cta-note">ปรึกษาฟรี ไม่มีค่าใช้จ่าย ตอบทุกวัน</div>
+          <div className="cta-note">ปรึกษาฟรี ไม่มีข้อผูกมัด · ทีมงานตอบทุกวัน</div>
         </div>
+      </div>
+
+      {/* mobile-only sticky bar so the price + CTA stay reachable while scrolling specs */}
+      <div className="sticky-cta">
+        <div>
+          <div className="sp">{formatBaht(now)}/เดือน</div>
+          <div className="sl">
+            {showWas ? `ปกติ ${formatBaht(p.monthlyPrice)} · รวมติดตั้ง + ดูแลแล้ว` : "รวมติดตั้ง + ดูแลแล้ว"}
+          </div>
+        </div>
+        <a className="btn btn-line" href={site.line} target="_blank" rel="noopener">
+          สมัครผ่าน LINE
+        </a>
       </div>
     </>
   );

@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { nonEmptyCategories, productsInCategory, site } from "@/lib/catalog";
 
 export const metadata: Metadata = {
-  title: "บริการ LG Careship — ดูแล ล้าง ซ่อม อะไหล่ฟรีตลอดสัญญา — LG Subscribe Thailand",
+  title: "บริการ LG Care Service — ดูแล ล้าง ซ่อม อะไหล่ฟรีตลอดสัญญา — LG Subscribe Thailand",
   description:
-    "ทีมช่าง LG Careship เข้าดูแลถึงบ้านตามรอบ ล้างฟรี ซ่อมฟรี อะไหล่ฟรี เปลี่ยนเครื่องใหม่ถ้าซ่อมไม่ได้ — รวมในค่ารายเดือนแล้วทั้งหมด",
+    "ทีมช่าง LG Care Service เข้าดูแลถึงบ้านตามรอบ ล้างฟรี ซ่อมฟรี อะไหล่ฟรี เปลี่ยนเครื่องใหม่ถ้าซ่อมไม่ได้ — รวมในค่ารายเดือนแล้วทั้งหมด",
   alternates: { canonical: "/careship/" },
 };
 
@@ -73,10 +73,8 @@ export default function CareshipPage() {
     <main>
       <div className="svc-hero">
         <div className="container">
-          <div className="kicker" style={{ color: "#fbd5e2" }}>
-            After-sales peace of mind
-          </div>
-          <h1>🔧 LG Careship — จ่ายรายเดือนจบ ที่เหลือเรื่องของเรา</h1>
+          <div className="kicker">After-sales peace of mind</div>
+          <h1>LG Care Service — จ่ายรายเดือนจบ ที่เหลือเรื่องของเรา</h1>
           <p>
             ทุกแพ็กเกจ Subscribe รวมบริการดูแลถึงบ้านโดยทีมช่าง LG ไว้แล้ว ไม่มีค่าเดินทาง
             ไม่มีค่าแรง ไม่มีค่าอะไหล่ — ตลอดอายุสัญญา
@@ -85,6 +83,27 @@ export default function CareshipPage() {
       </div>
 
       <section>
+        <div className="container">
+          <div className="section-head" style={{ justifyContent: "center", textAlign: "center" }}>
+            <div>
+              <div className="kicker">Watch</div>
+              <h2>รู้จักบริการดูแลจาก LG ใน 1 นาที</h2>
+            </div>
+          </div>
+          <div className="video-wrap">
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/L40MmCb1uDE"
+              title="LG Subscribe : การดูแลเครื่องใช้ไฟฟ้าจะไม่ใช่เรื่องยุ่งยากอีกต่อไป"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              loading="lazy"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className="alt">
         <div className="container">
           <div className="section-head">
             <div>
@@ -105,7 +124,7 @@ export default function CareshipPage() {
         </div>
       </section>
 
-      <section className="alt">
+      <section>
         <div className="container">
           <div className="section-head">
             <div>
@@ -126,9 +145,7 @@ export default function CareshipPage() {
               <tbody>
                 {scheduleRows.map((r) => (
                   <tr key={r.category.slug}>
-                    <td>
-                      {r.category.emoji} {r.category.nameTh}
-                    </td>
+                    <td>{r.category.nameTh}</td>
                     <td>
                       <span className="pill">{r.interval}</span>
                     </td>
@@ -146,7 +163,7 @@ export default function CareshipPage() {
         </div>
       </section>
 
-      <section>
+      <section className="alt">
         <div className="container">
           <div className="section-head">
             <div>
@@ -165,7 +182,7 @@ export default function CareshipPage() {
         </div>
       </section>
 
-      <section className="alt">
+      <section>
         <div className="container">
           <div className="section-head">
             <div>
@@ -211,7 +228,7 @@ export default function CareshipPage() {
             </p>
             <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
               <a className="btn btn-line btn-lg" href={site.line} target="_blank" rel="noopener">
-                <span className="line-dot">LINE</span> ทักไลน์ Careship
+                <span className="line-dot">LINE</span> ทักไลน์ LG Care Service
               </a>
               <a className="btn btn-outline btn-lg" href={site.phoneHref}>
                 ☎ {site.phone}

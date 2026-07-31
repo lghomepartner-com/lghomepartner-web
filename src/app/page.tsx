@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { categories, featuredProducts, reviews, site } from "@/lib/catalog";
+import { categories, categoryImage, featuredProducts, imageSrc, reviews, site } from "@/lib/catalog";
 import Countdown from "@/components/Countdown";
 import ProductCard from "@/components/ProductCard";
 
@@ -16,15 +16,15 @@ const USPS = [
 ];
 
 const STEPS = [
-  { num: "01", title: "ทักไลน์ปรึกษา", text: "บอกสินค้าและขนาดที่ต้องการ ทีมงานตอบไวทุกวัน" },
-  { num: "02", title: "รับใบเสนอราคา", text: "ราคาชัดเจนตรงไปตรงมา พร้อมรายละเอียดแผนครบถ้วน" },
-  { num: "03", title: "ยืนยันสัญญา", text: "ใช้เพียงบัตรเครดิต ตัดรายเดือน ไม่ล็อกวงเงินก้อน" },
-  { num: "04", title: "ติดตั้งฟรีถึงบ้าน", text: "ทีมช่าง LG เข้าติดตั้งให้ถึงที่ พร้อมใช้งานได้ทันที" },
+  { num: "01", title: "ทักไลน์ บอกรุ่นที่สนใจ", text: "แจ้งสินค้า ขนาด และพื้นที่ใช้งาน ทีมงานตอบทุกวัน" },
+  { num: "02", title: "รับใบเสนอราคาชัดเจน", text: "ราคารายเดือนตรงไปตรงมา ไม่มีค่าใช้จ่ายแอบแฝง" },
+  { num: "03", title: "ยืนยันด้วยบัตรเครดิต", text: "ตัดเฉพาะยอดรายเดือน ไม่ล็อกวงเงินก้อนใหญ่" },
+  { num: "04", title: "ช่าง LG ติดตั้งฟรีถึงบ้าน", text: "นัดวันติดตั้งที่คุณสะดวก พร้อมใช้งานทันที" },
 ];
 
 const WHY_ITEMS = [
   { ico: "🛡️", title: "ประกันยาว 5–7 ปี", text: "ครอบคลุมทุกชิ้นส่วน นานกว่าซื้อขาดหลายเท่า" },
-  { ico: "🔧", title: "ซ่อมฟรีตลอดสัญญา", text: "ทีม CAREShip เข้าดูแลถึงบ้าน ไม่มีค่าซ่อม ค่าอะไหล่" },
+  { ico: "🔧", title: "ซ่อมฟรีตลอดสัญญา", text: "ทีม LG Care Service เข้าดูแลถึงบ้าน ไม่มีค่าซ่อม ค่าอะไหล่" },
   { ico: "💳", title: "ไม่ล็อกวงเงินบัตร", text: "ตัดแค่ยอดรายเดือน ต่างจากการผ่อนที่ล็อกวงเงินเต็มจำนวน" },
   { ico: "📦", title: "เครื่องใหม่ 100%", text: "ส่งตรงจาก LG Electronics Thailand ทุกเครื่อง" },
   { ico: "🏡", title: "ติดตั้งฟรีถึงบ้าน", text: "ช่าง LG มาตรฐานโรงงาน ติดตั้งเรียบร้อยพร้อมใช้" },
@@ -35,7 +35,7 @@ const TRUST_BADGES = [
   { em: "🏅", text: "ตัวแทนทางการ · Dealer F217023" },
   { em: "🛡️", text: "ประกันศูนย์ LG 5–7 ปี" },
   { em: "📦", text: "เครื่องใหม่ 100% จาก LG Thailand" },
-  { em: "🔧", text: "ดูแลโดยทีมช่าง LG Careship" },
+  { em: "🔧", text: "ดูแลโดยทีมช่าง LG Care Service" },
   { em: "💳", text: "ไม่ล็อกวงเงินบัตรเครดิต" },
 ];
 
@@ -48,54 +48,43 @@ const PAYMENTS = [
 export default function HomePage() {
   return (
     <main>
-      <section className="hero">
-        <div className="container hero-grid">
-          <div>
-            <h1>
-              <span className="accent">LG Subscribe</span>
-              เช่าเครื่องใช้ไฟฟ้า LG รายเดือน ไม่กระทบวงเงินบัตรเครดิต
-            </h1>
-            <p className="lead">
-              จ่ายเป็นรายเดือนผ่านบัตรเครดิต โดยไม่ถูกล็อกวงเงินก้อนใหญ่ ได้เครื่องใหม่ 100%
-              พร้อมทีมช่างดูแล ล้าง ซ่อม เปลี่ยนอะไหล่ฟรีตลอดอายุสัญญา
-            </p>
-            <div className="hero-ctas">
-              <a className="btn btn-red btn-lg" href="#contact">สมัครเลย</a>
-              <Link className="btn btn-outline btn-lg" href="/products">ดูสินค้า</Link>
-              <a className="hero-phone" href={site.phoneHref}>☎ {site.phone}</a>
-            </div>
-            <div className="trust-chips">
-              {["ติดตั้งฟรี", "ล้าง ซ่อม อะไหล่ฟรี", "ประกัน 5–7 ปี", "เครื่องใหม่ 100%"].map((t) => (
-                <span className="chip" key={t}>
-                  <span className="ok">✓</span> {t}
-                </span>
-              ))}
-            </div>
+      <section className="hero-video">
+        <div className="hv-bg" aria-hidden="true">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/HmArynscjAA?autoplay=1&mute=1&controls=0&loop=1&playlist=HmArynscjAA&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1"
+            title="LG Subscribe : วิธีที่ฉลาดกว่าในการเป็นเจ้าของเครื่องใช้ไฟฟ้า"
+            allow="autoplay; encrypted-media"
+            tabIndex={-1}
+          />
+        </div>
+        <div className="hv-veil" aria-hidden="true" />
+        <div className="container hv-content">
+          <div className="hv-badge">✓ ตัวแทนจำหน่ายอย่างเป็นทางการ · Dealer F217023</div>
+          <h1>
+            เช่าเครื่องใช้ไฟฟ้า LG รายเดือน
+            <span>เริ่ม ฿149/เดือน · ไม่ล็อกวงเงินบัตรเครดิต</span>
+          </h1>
+          <p className="hv-lead">
+            เครื่องใหม่ 100% ส่งตรงจาก LG Thailand ติดตั้งฟรีถึงบ้าน
+            พร้อมทีมช่าง LG ดูแล ล้าง ซ่อม อะไหล่ฟรีตลอดสัญญา
+          </p>
+          <div className="hv-ctas">
+            <a className="btn btn-line btn-lg" href={site.line} target="_blank" rel="noopener">
+              <span className="line-dot">LINE</span> สมัครผ่าน LINE — ปรึกษาฟรี
+            </a>
+            <Link className="btn btn-ghost btn-lg" href="/products">ดูสินค้า + ราคาทั้งหมด</Link>
+            <a className="hv-phone" href={site.phoneHref}>☎ {site.phone}</a>
           </div>
-          <div>
-            <div className="hero-card">
-              <div className="big-emoji">❄️🧊👕</div>
-              <div className="price-tag">
-                เริ่ม ฿149 <small>/เดือน</small>
-              </div>
-              <div className="note">14 หมวดสินค้า · 70+ รุ่น · ครบทั้งบ้าน</div>
-              <a
-                className="btn btn-line btn-lg"
-                style={{ marginTop: 18, width: "100%" }}
-                href={site.line}
-                target="_blank"
-                rel="noopener"
-              >
-                <span className="line-dot">LINE</span> ปรึกษาฟรีทาง LINE
-              </a>
-            </div>
-            <div className="warning-note">
-              <b>⚠ โปรดระวังมิจฉาชีพ</b> — ติดต่อผ่านช่องทางทางการของเราเท่านั้น
-              <br />
-              {site.dealer}
-            </div>
+          <div className="hv-trust">
+            <span className="hv-chip">
+              <span className="star">★</span> {reviews.rating} · {reviews.count} รีวิวจากลูกค้าจริง
+            </span>
+            {["ติดตั้งฟรี", "ล้าง ซ่อม อะไหล่ฟรี", "ประกัน 5–7 ปี", "เครื่องใหม่ 100%"].map((t) => (
+              <span className="hv-chip" key={t}>✓ {t}</span>
+            ))}
           </div>
         </div>
+        <div className="hv-scroll" aria-hidden="true">เลื่อนดูเพิ่มเติม ↓</div>
       </section>
 
       <section style={{ padding: "28px 0 0" }}>
@@ -105,6 +94,11 @@ export default function HomePage() {
               <span className="em">{b.em}</span> {b.text}
             </span>
           ))}
+        </div>
+        <div className="container">
+          <div className="warning-note">
+            <b>⚠ โปรดระวังมิจฉาชีพ</b> — ติดต่อผ่านช่องทางทางการของเราเท่านั้น · {site.dealer}
+          </div>
         </div>
       </section>
 
@@ -147,13 +141,22 @@ export default function HomePage() {
             <Link className="see-all" href="/products">ดูทั้งหมด →</Link>
           </div>
           <div className="cat-grid">
-            {categories.map((c) => (
-              <Link className="cat-tile" href={`/products?category=${c.slug}`} key={c.slug}>
-                <div className="em">{c.emoji}</div>
-                <div className="nm">{c.nameTh}</div>
-                <div className="ct">{c.productCount} รุ่น</div>
-              </Link>
-            ))}
+            {categories.map((c) => {
+              const photo = categoryImage(c.slug);
+              return (
+                <Link className="cat-tile" href={`/products?category=${c.slug}`} key={c.slug}>
+                  {photo ? (
+                    <div className="ph">
+                      <img src={imageSrc(photo)} alt={c.nameTh} loading="lazy" />
+                    </div>
+                  ) : (
+                    <div className="em">{c.emoji}</div>
+                  )}
+                  <div className="nm">{c.nameTh}</div>
+                  <div className="ct">{c.productCount} รุ่น</div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -212,7 +215,7 @@ export default function HomePage() {
               </div>
             </div>
             <a className="see-all" href={site.line} target="_blank" rel="noopener">
-              ทักไลน์ถามลูกค้าเก่าได้ →
+              สอบถามเพิ่มเติมทาง LINE →
             </a>
           </div>
           <div className="review-grid">
@@ -273,14 +276,14 @@ export default function HomePage() {
             <div className="kicker" style={{ color: "#fbd5e2" }}>
               คุยกับเราเลย · ปรึกษาฟรี
             </div>
-            <h2>พร้อมจะ Subscribe แล้วใช่ไหม?</h2>
+            <h2>พร้อมเริ่มใช้เครื่องใหม่ โดยไม่ต้องจ่ายก้อนใหญ่?</h2>
             <p>
-              ทักมาทางไลน์ บอกสินค้าที่สนใจ
-              เดี๋ยวทีมงานช่วยคำนวณและแนะนำแพ็กเกจที่คุ้มที่สุดสำหรับบ้านของคุณ
+              ทักไลน์บอกรุ่นที่สนใจ ทีมงานคำนวณราคาและแนะนำแพ็กเกจที่คุ้มที่สุดสำหรับบ้านคุณ
+              — ปรึกษาฟรี ไม่มีข้อผูกมัด
             </p>
             <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
               <a className="btn btn-line btn-lg" href={site.line} target="_blank" rel="noopener">
-                <span className="line-dot">LINE</span> ปรึกษาทาง LINE
+                <span className="line-dot">LINE</span> สมัครผ่าน LINE
               </a>
               <a className="btn btn-outline btn-lg" href={site.phoneHref}>
                 ☎ {site.phone}

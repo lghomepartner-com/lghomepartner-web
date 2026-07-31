@@ -17,7 +17,7 @@ export default function SiteFooter() {
             <h4>หมวดสินค้ายอดนิยม</h4>
             {categories.slice(0, 8).map((c) => (
               <Link key={c.slug} href={`/products?category=${c.slug}`}>
-                {c.emoji} {c.nameTh}
+                {c.nameTh}
               </Link>
             ))}
           </div>
@@ -26,7 +26,7 @@ export default function SiteFooter() {
             <Link href="/">หน้าหลัก</Link>
             <Link href="/products">สินค้าทั้งหมด</Link>
             <Link href="/calculator">คำนวณเทียบราคา</Link>
-            <Link href="/careship">Care service</Link>
+            <Link href="/careship">LG Care Service</Link>
             <Link href="/faq">ถาม–ตอบ</Link>
           </div>
           <div>

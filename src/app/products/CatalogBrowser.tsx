@@ -86,7 +86,7 @@ export default function CatalogBrowser() {
       <div className="page-head">
         <div className="container">
           <div className="kicker">Products</div>
-          <h1>{activeCategory ? `${activeCategory.emoji} ${activeCategory.nameTh}` : "สินค้าทั้งหมด"}</h1>
+          <h1>{activeCategory ? activeCategory.nameTh : "สินค้าทั้งหมด"}</h1>
           <p>ทุกรุ่นติดตั้งฟรี ดูแลฟรีตลอดสัญญา — เลือกหมวดหรือค้นหารุ่นที่สนใจ แล้วทักไลน์สอบถามได้เลย</p>
           <div className="filter-bar">
             <button
@@ -103,7 +103,7 @@ export default function CatalogBrowser() {
                 aria-pressed={activeCat === c.slug}
                 onClick={() => selectCategory(c.slug)}
               >
-                {c.emoji} {c.nameTh} ({c.productCount})
+                {c.nameTh} ({c.productCount})
               </button>
             ))}
           </div>

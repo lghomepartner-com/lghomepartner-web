@@ -33,6 +33,9 @@ export default function ProductCard({ product }: { product: Product }) {
           <span className="price">{formatBaht(range.min)}</span>
           {range.max !== null && <span className="price-max">– {formatBaht(range.max)}</span>}
           <span className="unit">/เดือน</span>
+          {pct !== null && product.monthlyPrice && (
+            <span className="was-price">{formatBaht(product.monthlyPrice)}</span>
+          )}
         </div>
         {choices > 1 ? (
           <div className="plans-note">{choices} แผนให้เลือก</div>

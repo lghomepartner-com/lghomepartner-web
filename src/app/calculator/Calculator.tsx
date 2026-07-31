@@ -100,7 +100,7 @@ export default function Calculator() {
             <select id="calc-cat" value={catSlug} onChange={(e) => selectCategory(e.target.value)}>
               {nonEmptyCategories().map((c) => (
                 <option key={c.slug} value={c.slug}>
-                  {c.emoji} {c.nameTh}
+                  {c.nameTh}
                 </option>
               ))}
             </select>
