@@ -6,7 +6,10 @@ export interface SiteConfig {
   phone: string;
   phoneHref: string;
   line: string;
+  /** LINE Official Account ID, e.g. "@384uicea" — shown next to LINE links. */
+  lineId: string;
   facebook: string;
+  instagram: string;
   dealer: string;
   /** Remote origin for product images; empty string = self-hosted under /images. */
   imageBase: string;

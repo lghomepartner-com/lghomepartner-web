@@ -6,6 +6,18 @@ export const metadata: Metadata = {
   title: "ถาม–ตอบ & ปิดทุกข้อสงสัย — LG Subscribe Thailand",
   description:
     "รวมคำตอบข้อสงสัยยอดฮิต — หมดสัญญาเครื่องเป็นของใคร ไม่มีบัตรเครดิตสมัครได้ไหม ย้ายบ้านทำยังไง เครื่องเสียใครซ่อม — ตอบชัดทุกข้อ",
+  alternates: { canonical: "/faq/" },
+};
+
+// FAQPage rich-result markup built from the same data the page renders.
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
 };
 
 export default function FaqPage() {
@@ -13,6 +25,10 @@ export default function FaqPage() {
 
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="page-head">
         <div className="container">
           <div className="kicker">Handling objections</div>

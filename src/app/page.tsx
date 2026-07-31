@@ -1,7 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { categories, featuredProducts, reviews, site } from "@/lib/catalog";
 import Countdown from "@/components/Countdown";
 import ProductCard from "@/components/ProductCard";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 const USPS = [
   { ico: "✓", title: "ไม่ล็อกวงเงินบัตร", text: "ตัดบัตรเฉพาะยอดรายเดือน วงเงินที่เหลือใช้ต่อได้ตามปกติ" },

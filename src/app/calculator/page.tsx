@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "คำนวณเทียบราคา Subscribe vs ซื้อขาด — LG Subscribe Thailand",
   description:
     "เครื่องมือเปรียบเทียบค่าใช้จ่ายจริง — LG Subscribe รายเดือน เทียบกับซื้อขาด + ค่าดูแลเอง เห็นตัวเลขชัดทุกบาทตลอดสัญญา",
+  alternates: { canonical: "/calculator/" },
 };
 
 export default function CalculatorPage() {

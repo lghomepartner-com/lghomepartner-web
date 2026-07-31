@@ -32,11 +32,14 @@ export default function SiteFooter() {
           <div>
             <h4>ติดต่อเรา</h4>
             <a href={site.line} target="_blank" rel="noopener">
-              💬 LINE Official
+              💬 LINE Official {site.lineId}
             </a>
             <a href={site.phoneHref}>☎ {site.phone}</a>
             <a href={site.facebook} target="_blank" rel="noopener">
               📘 Facebook
+            </a>
+            <a href={site.instagram} target="_blank" rel="noopener">
+              📸 Instagram
             </a>
           </div>
         </div>

@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "บริการ LG Careship — ดูแล ล้าง ซ่อม อะไหล่ฟรีตลอดสัญญา — LG Subscribe Thailand",
   description:
     "ทีมช่าง LG Careship เข้าดูแลถึงบ้านตามรอบ ล้างฟรี ซ่อมฟรี อะไหล่ฟรี เปลี่ยนเครื่องใหม่ถ้าซ่อมไม่ได้ — รวมในค่ารายเดือนแล้วทั้งหมด",
+  alternates: { canonical: "/careship/" },
 };
 
 const FREE_SERVICES = [

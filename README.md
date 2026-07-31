@@ -54,7 +54,8 @@ public/logo.svg               Site logo
 `src/data/products.json` holds everything the UI renders (typed by
 `src/lib/types.ts`):
 
-- `site` — name, phone, LINE link, Facebook, dealer line, `imageBase`
+- `site` — name, phone, LINE link + `lineId` (@384uicea), Facebook, Instagram,
+  dealer line, `imageBase`
 - `categories[]` — slug, Thai name, emoji, product count
 - `products[]` — name, slug, category, image + `gallery[]`, prices
   (regular / promo), promo label, size variants, service plans, features,

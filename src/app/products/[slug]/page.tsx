@@ -10,6 +10,7 @@ import {
   site,
   variantSlug,
 } from "@/lib/catalog";
+import { siteUrl } from "@/lib/site-url";
 import { discountPct, effectivePrice, formatBaht } from "@/lib/pricing";
 import ProductCard from "@/components/ProductCard";
 import ProductGallery from "./ProductGallery";
@@ -32,6 +33,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${p.name} — ${formatBaht(effectivePrice(p))}/เดือน — LG Subscribe Thailand`,
     description: p.description,
+    alternates: { canonical: `/products/${p.slug}/` },
     openGraph: { images: p.image ? [imageSrc(p.image)] : [] },
   };
 }
@@ -46,8 +48,45 @@ export default async function ProductDetailPage({ params }: PageProps) {
   const related = relatedProducts(p);
   const variants = p.variants ?? [];
 
+  // Product + BreadcrumbList rich-result markup. The offer is the monthly
+  // subscription price, so priceCurrency/price describe one month.
+  const cover = imageSrc(p.image);
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: p.name,
+    description: p.description,
+    image: cover ? [cover.startsWith("/") ? `${siteUrl}${cover}` : cover] : undefined,
+    brand: { "@type": "Brand", name: "LG" },
+    category: cat?.nameTh ?? p.category,
+    offers: {
+      "@type": "Offer",
+      url: `${siteUrl}/products/${p.slug}/`,
+      price: effectivePrice(p),
+      priceCurrency: "THB",
+      availability: "https://schema.org/InStock",
+    },
+  };
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "หน้าหลัก", item: `${siteUrl}/` },
+      { "@type": "ListItem", position: 2, name: "สินค้าทั้งหมด", item: `${siteUrl}/products/` },
+      { "@type": "ListItem", position: 3, name: p.name },
+    ],
+  };
+
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <div className="container">
         <div className="breadcrumb">
           <Link href="/">หน้าหลัก</Link> / <Link href="/products">สินค้าทั้งหมด</Link> /{" "}
