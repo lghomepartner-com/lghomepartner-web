@@ -22,15 +22,26 @@ export default function ProductGallery({
   discountPct,
   featured,
 }: ProductGalleryProps) {
-  const [index, setIndex] = useState(0);
-  const [failed, setFailed] = useState<Set<number>>(new Set());
+  const [rawIndex, setIndex] = useState(0);
+  const [failed, setFailed] = useState<Set<string>>(new Set());
   const thumbsRef = useRef<HTMLDivElement>(null);
   const thumbButtonRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const touchStartX = useRef<number | null>(null);
-  const multi = gallery.length > 1;
+  // Broken photos are dropped from the carousel entirely — the next one that
+  // loads takes their place. The emoji shows only when nothing is loadable.
+  const photos = gallery.filter((src) => !failed.has(src));
+  const index = photos.length ? Math.min(rawIndex, photos.length - 1) : 0;
+  const multi = photos.length > 1;
+
+  const markFailed = (src: string) => setFailed((prev) => new Set(prev).add(src));
+  // A 404 during initial HTML load fires before hydration attaches onError —
+  // catch that case when the element mounts.
+  const dropIfBroken = (el: HTMLImageElement | null, src: string) => {
+    if (el && el.complete && el.naturalWidth === 0) markFailed(src);
+  };
 
   function showImage(i: number) {
-    const next = (i + gallery.length) % gallery.length; // wrap around both ends
+    const next = (i + photos.length) % photos.length; // wrap around both ends
     setIndex(next);
     // Keep the active thumb visible — scroll the strip only, never the page.
     const strip = thumbsRef.current;
@@ -73,15 +84,16 @@ export default function ProductGallery({
           {discountPct !== null && <span className="b">-{discountPct}%</span>}
           {featured && <span className="b orange">แนะนำ</span>}
         </div>
-        {gallery.length === 0 || failed.has(index) ? (
+        {photos.length === 0 ? (
           <div className="fallback">{fallbackEmoji}</div>
         ) : (
           <img
-            src={gallery[index]}
+            src={photos[index]}
             alt={name}
             // The main photo is the page's LCP element — fetch it first.
             fetchPriority="high"
-            onError={() => setFailed((prev) => new Set(prev).add(index))}
+            onError={() => markFailed(photos[index])}
+            ref={(el) => dropIfBroken(el, photos[index])}
           />
         )}
         {multi && (
@@ -107,14 +119,14 @@ export default function ProductGallery({
               </svg>
             </button>
             <span className="gallery-counter">
-              {index + 1} / {gallery.length}
+              {index + 1} / {photos.length}
             </span>
           </>
         )}
       </div>
       {multi && (
         <div className="detail-thumbs" ref={thumbsRef}>
-          {gallery.map((src, i) => (
+          {photos.map((src, i) => (
             <button
               key={src + i}
               type="button"
@@ -125,7 +137,13 @@ export default function ProductGallery({
                 thumbButtonRefs.current[i] = el;
               }}
             >
-              <img src={src} alt="" loading="lazy" />
+              <img
+                src={src}
+                alt=""
+                loading="lazy"
+                onError={() => markFailed(src)}
+                ref={(el) => dropIfBroken(el, src)}
+              />
             </button>
           ))}
         </div>

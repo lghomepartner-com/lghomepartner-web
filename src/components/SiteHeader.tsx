@@ -26,7 +26,7 @@ export default function SiteHeader({ site }: { site: SiteConfig }) {
   return (
     <header className="site-header">
       <div className="promo-bar">
-        ลด 50% 6 เดือนแรก — แอร์เริ่มต้น ฿299/เดือน · ติดตั้งฟรีทุกสินค้า{" "}
+        โปร ส.ค. บิลแรก ฿149 + ลด 50% — แอร์เริ่มต้น ฿299/เดือน · ติดตั้งฟรีทุกสินค้า{" "}
         <Link href="/products">ดูสินค้าทั้งหมด →</Link>
       </div>
       <div className="container inner">

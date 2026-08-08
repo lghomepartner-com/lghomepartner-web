@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { getProduct, imageSrc, nonEmptyCategories, products, site } from "@/lib/catalog";
-import { effectivePrice, formatBaht, subscribeTotal } from "@/lib/pricing";
+import { effectivePrice, firstBillPrice, formatBaht, subscribeTotal } from "@/lib/pricing";
 
 /** Days per month used to convert contract totals to a per-day figure. */
 const DAYS_PER_MONTH = 30.4;
@@ -179,9 +179,16 @@ export default function Calculator() {
               <div className="tag">LG Subscribe · {s.months} เดือน</div>
               <div className="total">{formatBaht(Math.round(s.total))}</div>
               <div className="per">
-                {s.promoMonths
-                  ? `${formatBaht(s.promo)} × ${s.promoMonths} ด.แรก + ${formatBaht(s.normal)} × ${s.months - s.promoMonths} ด.`
-                  : `${formatBaht(s.normal)}/เดือน`}
+                {(() => {
+                  const first = firstBillPrice(product);
+                  const rest = s.months - s.promoMonths - (first !== null ? 1 : 0);
+                  const parts = [
+                    first !== null ? `บิลแรก ${formatBaht(first)}` : "",
+                    s.promoMonths ? `${formatBaht(s.promo)} × ${s.promoMonths} ด.` : "",
+                    s.promoMonths || first !== null ? `${formatBaht(s.normal)} × ${rest} ด.` : "",
+                  ].filter(Boolean);
+                  return parts.length ? parts.join(" + ") : `${formatBaht(s.normal)}/เดือน`;
+                })()}
               </div>
               <div className="perday-chip">
                 เฉลี่ยวันละ <b>{formatBaht(Math.ceil(perDay))}</b>

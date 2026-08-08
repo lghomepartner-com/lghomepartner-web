@@ -33,10 +33,23 @@ export function discountPct(p: Product): number | null {
   return null;
 }
 
-/** How many leading months the promo price applies, parsed from "ลด 50% 6 เดือนแรก". */
+/**
+ * How many months the promo price applies, parsed from the label:
+ * "ลด 50% 6 เดือนแรก" → 6, or a billing range "ลด 50% บิลที่ 2-8" → 7.
+ */
 export function promoMonths(p: Product): number {
-  const m = /(\d+)\s*เดือนแรก/.exec(p.promoLabel ?? "");
-  return m ? Number(m[1]) : 0;
+  const label = p.promoLabel ?? "";
+  const m = /(\d+)\s*เดือนแรก/.exec(label);
+  if (m) return Number(m[1]);
+  const r = /บิลที่\s*(\d+)\s*-\s*(\d+)/.exec(label);
+  if (r) return Number(r[2]) - Number(r[1]) + 1;
+  return 0;
+}
+
+/** Special first-bill price parsed from "บิลแรก ฿149" / "เดือนแรก ฿149", or null. */
+export function firstBillPrice(p: Product): number | null {
+  const m = /(?:บิลแรก|เดือนแรก)\s*฿?\s*([\d,]+)/.exec(p.promoLabel ?? "");
+  return m ? Number(m[1].replace(/,/g, "")) : null;
 }
 
 export interface SubscribeTotal {
@@ -53,7 +66,11 @@ export function subscribeTotal(p: Product): SubscribeTotal {
   const normal = p.monthlyPrice || p.price || 0;
   const promo = p.promoPrice ?? normal;
   const pm = promoMonths(p);
-  return { months, total: promo * pm + normal * (months - pm), promoMonths: pm, promo, normal };
+  let total = promo * pm + normal * (months - pm);
+  // a "บิลแรก ฿149" bill replaces one regular-priced month
+  const first = firstBillPrice(p);
+  if (first !== null && pm < months) total -= normal - first;
+  return { months, total, promoMonths: pm, promo, normal };
 }
 
 /** Index of the cheapest plan — the default selection on the detail page. */

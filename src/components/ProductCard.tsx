@@ -14,7 +14,7 @@ export default function ProductCard({ product }: { product: Product }) {
     <Link className="p-card" href={`/products/${encodeURIComponent(product.slug)}`}>
       <div className={product.category === "microwave" ? "img-wrap img-full" : "img-wrap"}>
         <ProductImage
-          src={imageSrc(product.image)}
+          src={[product.image, ...(product.gallery ?? [])].map(imageSrc)}
           alt={product.name}
           fallbackEmoji={cat?.emoji ?? "📦"}
           loading="lazy"
