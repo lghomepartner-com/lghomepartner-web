@@ -9,7 +9,9 @@
   "facebook": "https://www.facebook.com/profile.php?id=61564717588294",
   "instagram": "https://www.instagram.com/lg_subhomepartner",
   "dealer": "กมลลักษณ์ เรืองใจ (พี่ก้อย) · LG Subscribe Dealer · F217023",
-  "imageBase": ""
+  "imageBase": "",
+  "phone2": "098-306-1568",
+  "phone2Href": "tel:0983061568"
  },
  "categories": [
   {
@@ -50,7 +52,7 @@
   },
   {
    "slug": "styler",
-   "nameTh": "ตู้อบผ้า Styler",
+   "nameTh": "ตู้ถนอมผ้า Styler",
    "emoji": "👔",
    "productCount": 1
   },
@@ -2317,7 +2319,7 @@
    "category": "refrigerator",
    "name": "LG ตู้เย็น Side by Side กรองน้ำได้ 22.4 คิว (สีเบจ)",
    "description": "LG ตู้เย็น Side by Side กรองน้ำได้ 22.4 คิว (สีเบจ) ภายใต้โครงการ LG Subscribe — เช่ารายเดือน ฿1,249/เดือน ระยะสัญญา 72 เดือน ติดตั้งฟรี ดูแลตลอดสัญญา 5 ปี คอมเพรสเซอร์ 10 ปี",
-   "image": "/images/products-may2026/gc-x257cmhw-aeeplmt.png",
+   "image": "/images/products-aug2026/Fridge-SideBySide_GC-X257CMHW_22.4cu-Beige.jpg",
    "price": 1249,
    "contractMonths": 72,
    "monthlyPrice": 1249,
@@ -2383,7 +2385,13 @@
    "totalContractValue": "฿88,828",
    "serviceInterval": "ทุกๆ 6 เดือน",
    "gallery": [
-    "/images/products-may2026/gc-x257cmhw-aeeplmt.png"
+    "/images/products-aug2026/Fridge-SideBySide_GC-X257CMHW_22.4cu-Beige.jpg",
+    "/images/products-aug2026/Fridge-SideBySide_GC-X257CMHW_22.4cu-Beige_2.jpg",
+    "/images/products-aug2026/Fridge-SideBySide_GC-X257CMHW_22.4cu-Beige_3.jpg",
+    "/images/products-aug2026/Fridge-SideBySide_GC-X257CMHW_22.4cu-Beige_4.jpg",
+    "/images/products-aug2026/Fridge-SideBySide_GC-X257CMHW_22.4cu-Beige_5.jpg",
+    "/images/products-aug2026/Fridge-SideBySide_GC-X257CMHW_22.4cu-Beige_6.jpg",
+    "/images/products-aug2026/Fridge-SideBySide_GC-X257CMHW_22.4cu-Beige_7.jpg"
    ],
    "promoLabel": "เดือนแรก ฿149 + ฟรี Water Filter"
   },
@@ -4504,7 +4512,7 @@
    "category": "monitor",
    "name": "LG UltraWide 34 นิ้ว WQHD IPS 100Hz Curved Monitor",
    "description": "LG UltraWide 34 นิ้ว WQHD IPS 100Hz Curved Monitor ภายใต้โครงการ LG Subscribe — เช่ารายเดือน ฿199.5/เดือน ระยะสัญญา 60 เดือน ติดตั้งฟรี ดูแลตลอดสัญญา 5 ปี",
-   "image": "/images/products-may2026/34u650a-b-atm.png",
+   "image": "/images/products-aug2026/Monitor_UltraWide-34U650A_34inch.jpg",
    "price": 199.5,
    "contractMonths": 60,
    "monthlyPrice": 399,
@@ -4542,7 +4550,13 @@
    "totalContractValue": "฿21,546",
    "serviceInterval": "-",
    "gallery": [
-    "/images/products-may2026/34u650a-b-atm.png"
+    "/images/products-aug2026/Monitor_UltraWide-34U650A_34inch.jpg",
+    "/images/products-aug2026/Monitor_UltraWide-34U650A_34inch_2.jpg",
+    "/images/products-aug2026/Monitor_UltraWide-34U650A_34inch_3.jpg",
+    "/images/products-aug2026/Monitor_UltraWide-34U650A_34inch_4.jpg",
+    "/images/products-aug2026/Monitor_UltraWide-34U650A_34inch_5.jpg",
+    "/images/products-aug2026/Monitor_UltraWide-34U650A_34inch_6.jpg",
+    "/images/products-aug2026/Monitor_UltraWide-34U650A_34inch_7.jpg"
    ],
    "plans": null
   },
@@ -5456,7 +5470,7 @@
    "category": "commercial-ac",
    "name": "LG SAC 4 Way Cassette 18,000 BTU",
    "description": "LG SAC 4 Way Cassette 18,000 BTU ภายใต้โครงการ LG Subscribe — เช่ารายเดือน ฿1,949/เดือน ระยะสัญญา 60 เดือน ติดตั้งฟรี ดูแลตลอดสัญญา 5 ปี",
-   "image": "/images/products/AC-Cassette_SAC-4Way_18000-48000BTU.jpg",
+   "image": "/images/products-aug2026/AC-Cassette_SAC-4Way_Cafe.jpg",
    "price": 1949,
    "contractMonths": 60,
    "monthlyPrice": 1949,
@@ -5497,7 +5511,7 @@
    "totalContractValue": "฿116,940",
    "serviceInterval": "ทุกๆ 4 เดือน",
    "gallery": [
-    "/images/products/AC-Cassette_SAC-4Way_18000-48000BTU.jpg"
+    "/images/products-aug2026/AC-Cassette_SAC-4Way_Cafe.jpg"
    ]
   },
   {

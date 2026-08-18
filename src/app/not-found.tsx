@@ -30,7 +30,7 @@ export default function NotFound() {
               ดูสินค้าทั้งหมด
             </Link>
             <a className="btn btn-line" href={site.line} target="_blank" rel="noopener">
-              <span className="line-dot">LINE</span> ถามทีมงาน
+              <img className="line-dot" src="/line-icon.svg" alt="" /> ถามทีมงาน
             </a>
           </div>
         </div>

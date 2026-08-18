@@ -170,7 +170,7 @@ export default function CatalogBrowser() {
                   ล้างตัวกรองทั้งหมด
                 </button>
                 <a className="btn btn-line" href={site.line} target="_blank" rel="noopener">
-                  <span className="line-dot">LINE</span> สอบถามทาง LINE
+                  <img className="line-dot" src="/line-icon.svg" alt="" /> สอบถามทาง LINE
                 </a>
               </div>
             </div>

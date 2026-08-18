@@ -187,12 +187,12 @@ export default function CareshipPage() {
           <div className="section-head">
             <div>
               <div className="kicker">Visit vs Self</div>
-              <h2>เลือกรูปแบบการดูแลได้</h2>
+              <h2>เลือก package การบริการ</h2>
             </div>
           </div>
           <div className="pay-grid" style={{ gridTemplateColumns: "repeat(2,1fr)" }}>
             <div className="pay-card">
-              <div className="ico">🏠</div>
+              <img className="card-photo" src="/images/careship/visit-service.png" alt="ช่าง LG เข้าดูแลเครื่องใช้ไฟฟ้าถึงบ้าน" />
               <h3>Visit Service — ช่างเข้าบ้าน</h3>
               <p>
                 ช่างผู้เชี่ยวชาญ LG เข้าดูแลถึงบ้านตามรอบ ล้าง ตรวจเช็ค เปลี่ยนอะไหล่ให้ครบ
@@ -200,7 +200,7 @@ export default function CareshipPage() {
               </p>
             </div>
             <div className="pay-card">
-              <div className="ico">📦</div>
+              <img className="card-photo" src="/images/careship/self-service.jpg" alt="LG จัดส่งอะไหล่และไส้กรองถึงบ้าน" />
               <h3>Self Service — ส่งอะไหล่ถึงบ้าน</h3>
               <p>
                 LG จัดส่งไส้กรอง อะไหล่ และน้ำยาแท้ถึงบ้านพร้อมคู่มือ
@@ -228,7 +228,7 @@ export default function CareshipPage() {
             </p>
             <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
               <a className="btn btn-line btn-lg" href={site.line} target="_blank" rel="noopener">
-                <span className="line-dot">LINE</span> ทักไลน์ LG Care Service
+                <img className="line-dot" src="/line-icon.svg" alt="" /> ทักไลน์ LG Care Service
               </a>
               <a className="btn btn-outline btn-lg" href={site.phoneHref}>
                 ☎ {site.phone}

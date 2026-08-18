@@ -5,6 +5,9 @@ export interface SiteConfig {
   tagline: string;
   phone: string;
   phoneHref: string;
+  /** Second contact number, shown alongside the primary in hero and footer. */
+  phone2?: string;
+  phone2Href?: string;
   line: string;
   /** LINE Official Account ID, e.g. "@384uicea" — shown next to LINE links. */
   lineId: string;

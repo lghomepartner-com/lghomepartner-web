@@ -63,7 +63,7 @@ export default function PlanAndPrice({ product: p, site }: PlanAndPriceProps) {
         </ul>
         <div className="cta-col">
           <a className="btn btn-line btn-lg" href={site.line} target="_blank" rel="noopener">
-            <span className="line-dot">LINE</span> สมัครรุ่นนี้ผ่าน LINE
+            <img className="line-dot" src="/line-icon.svg" alt="" /> สมัครรุ่นนี้ผ่าน LINE
           </a>
           <a className="btn btn-outline" href={site.phoneHref}>
             ☎ โทร {site.phone}

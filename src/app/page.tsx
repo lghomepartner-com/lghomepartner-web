@@ -1,34 +1,98 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { categories, categoryImage, featuredProducts, imageSrc, reviews, site } from "@/lib/catalog";
+import {
+  categories,
+  categoryImage,
+  featuredProducts,
+  imageSrc,
+  reviews,
+  site,
+} from "@/lib/catalog";
 import Countdown from "@/components/Countdown";
 import ProductCard from "@/components/ProductCard";
+import PromoPopup from "@/components/PromoPopup";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
 const USPS = [
-  { ico: "✓", title: "ไม่ล็อกวงเงินบัตร", text: "ตัดบัตรเฉพาะยอดรายเดือน วงเงินที่เหลือใช้ต่อได้ตามปกติ" },
-  { ico: "🛠", title: "ดูแลครบจบ", text: "ล้าง ซ่อม เปลี่ยนอะไหล่ ฟรีตลอดสัญญา โดยทีมช่าง LG" },
-  { ico: "📅", title: "จ่ายเท่าเดิมทุกเดือน", text: "ค่าใช้จ่ายคงที่ วางแผนการเงินได้ ไม่มีค่าใช้จ่ายแอบแฝง" },
-  { ico: "🏠", title: "ครบทั้งบ้าน", text: "แอร์ ตู้เย็น เครื่องซักผ้า ทีวี และอีกกว่า 70 รุ่นให้เลือก" },
+  {
+    ico: "✓",
+    title: "ไม่ล็อกวงเงินบัตร",
+    text: "ตัดบัตรเฉพาะยอดรายเดือน วงเงินที่เหลือใช้ต่อได้ตามปกติ",
+  },
+  {
+    ico: "🛠",
+    title: "ดูแลครบจบ",
+    text: "ล้าง ซ่อม เปลี่ยนอะไหล่ ฟรีตลอดสัญญา โดยทีมช่าง LG",
+  },
+  {
+    ico: "📅",
+    title: "จ่ายเท่าเดิมทุกเดือน",
+    text: "ค่าใช้จ่ายคงที่ วางแผนการเงินได้ ไม่มีค่าใช้จ่ายแอบแฝง",
+  },
+  {
+    ico: "🏠",
+    title: "ครบทั้งบ้าน",
+    text: "แอร์ ตู้เย็น เครื่องซักผ้า ทีวี และอีกกว่า 70 รุ่นให้เลือก",
+  },
 ];
 
 const STEPS = [
-  { num: "01", title: "ทักไลน์ บอกรุ่นที่สนใจ", text: "แจ้งสินค้า ขนาด และพื้นที่ใช้งาน ทีมงานตอบทุกวัน" },
-  { num: "02", title: "รับใบเสนอราคาชัดเจน", text: "ราคารายเดือนตรงไปตรงมา ไม่มีค่าใช้จ่ายแอบแฝง" },
-  { num: "03", title: "ยืนยันด้วยบัตรเครดิต", text: "ตัดเฉพาะยอดรายเดือน ไม่ล็อกวงเงินก้อนใหญ่" },
-  { num: "04", title: "ช่าง LG ติดตั้งฟรีถึงบ้าน", text: "นัดวันติดตั้งที่คุณสะดวก พร้อมใช้งานทันที" },
+  {
+    num: "01",
+    title: "ทักไลน์ บอกรุ่นที่สนใจ",
+    text: "แจ้งสินค้า ขนาด และพื้นที่ใช้งาน ทีมงานตอบทุกวัน",
+  },
+  {
+    num: "02",
+    title: "รับใบเสนอราคาชัดเจน",
+    text: "ราคารายเดือนตรงไปตรงมา ไม่มีค่าใช้จ่ายแอบแฝง",
+  },
+  {
+    num: "03",
+    title: "ยืนยันด้วยบัตรเครดิต",
+    text: "ตัดเฉพาะยอดรายเดือน ไม่ล็อกวงเงินก้อนใหญ่",
+  },
+  {
+    num: "04",
+    title: "ช่าง LG ติดตั้งฟรีถึงบ้าน",
+    text: "นัดวันติดตั้งที่คุณสะดวก พร้อมใช้งานทันที",
+  },
 ];
 
 const WHY_ITEMS = [
-  { ico: "🛡️", title: "ประกันยาว 5–7 ปี", text: "ครอบคลุมทุกชิ้นส่วน นานกว่าซื้อขาดหลายเท่า" },
-  { ico: "🔧", title: "ซ่อมฟรีตลอดสัญญา", text: "ทีม LG Care Service เข้าดูแลถึงบ้าน ไม่มีค่าซ่อม ค่าอะไหล่" },
-  { ico: "💳", title: "ไม่ล็อกวงเงินบัตร", text: "ตัดแค่ยอดรายเดือน ต่างจากการผ่อนที่ล็อกวงเงินเต็มจำนวน" },
-  { ico: "📦", title: "เครื่องใหม่ 100%", text: "ส่งตรงจาก LG Electronics Thailand ทุกเครื่อง" },
-  { ico: "🏡", title: "ติดตั้งฟรีถึงบ้าน", text: "ช่าง LG มาตรฐานโรงงาน ติดตั้งเรียบร้อยพร้อมใช้" },
-  { ico: "🔄", title: "เสียแล้วซ่อมไม่ได้ เปลี่ยนใหม่", text: "หากซ่อมไม่ได้ เปลี่ยนเครื่องใหม่ให้ฟรีตามเงื่อนไขสัญญา" },
+  {
+    ico: "🛡️",
+    title: "ประกันยาว 5–7 ปี",
+    text: "ครอบคลุมทุกชิ้นส่วน นานกว่าซื้อขาดหลายเท่า",
+  },
+  {
+    ico: "🔧",
+    title: "ซ่อมฟรีตลอดสัญญา",
+    text: "ทีม LG Care Service เข้าดูแลถึงบ้าน ไม่มีค่าซ่อม ค่าอะไหล่",
+  },
+  {
+    ico: "💳",
+    title: "ไม่ล็อกวงเงินบัตร",
+    text: "ตัดแค่ยอดรายเดือน ต่างจากการผ่อนที่ล็อกวงเงินเต็มจำนวน",
+  },
+  {
+    ico: "📦",
+    title: "เครื่องใหม่ 100%",
+    text: "ส่งตรงจาก LG Electronics Thailand ทุกเครื่อง",
+  },
+  {
+    ico: "🏡",
+    title: "ติดตั้งฟรีถึงบ้าน",
+    text: "ช่าง LG มาตรฐานโรงงาน ติดตั้งเรียบร้อยพร้อมใช้",
+  },
+  {
+    ico: "🔄",
+    title: "เสียแล้วซ่อมไม่ได้ เปลี่ยนใหม่",
+    text: "หากซ่อมไม่ได้ เปลี่ยนเครื่องใหม่ให้ฟรีตามเงื่อนไขสัญญา",
+  },
 ];
 
 const TRUST_BADGES = [
@@ -40,14 +104,23 @@ const TRUST_BADGES = [
 ];
 
 const PAYMENTS = [
-  { ico: "💳", title: "บัตรเครดิต", text: "ตัดรายเดือนอัตโนมัติ ไม่ล็อกวงเงินก้อนใหญ่" },
+  {
+    ico: "💳",
+    title: "บัตรเครดิต",
+    text: "ตัดรายเดือนอัตโนมัติ ไม่ล็อกวงเงินก้อนใหญ่",
+  },
   { ico: "🏦", title: "บัตรเดบิต", text: "ตัดตรงจากบัญชีธนาคารของคุณทุกเดือน" },
-  { ico: "🏢", title: "องค์กร / นิติบุคคล", text: "รองรับบริษัทและสำนักงาน ออกเอกสารครบถ้วน" },
+  {
+    ico: "🏢",
+    title: "องค์กร / นิติบุคคล",
+    text: "รองรับบริษัทและสำนักงาน ออกเอกสารครบถ้วน",
+  },
 ];
 
 export default function HomePage() {
   return (
     <main>
+      <PromoPopup />
       <section className="hero-video">
         <div className="hv-bg" aria-hidden="true">
           <iframe
@@ -59,32 +132,77 @@ export default function HomePage() {
         </div>
         <div className="hv-veil" aria-hidden="true" />
         <div className="container hv-content">
-          <div className="hv-badge">✓ ตัวแทนจำหน่ายอย่างเป็นทางการ · Dealer F217023</div>
+          <div className="hv-badge">
+            ✓ ตัวแทนจำหน่ายอย่างเป็นทางการ · Dealer F217023
+          </div>
           <h1>
-            เช่าเครื่องใช้ไฟฟ้า LG รายเดือน
+            เครื่องใช้ไฟฟ้า{" "}
+            <img className="h1-logo" src="/logo.svg" alt="LG Subscribe" />
+            <br />
+            จ่ายรายเดือน จ่ายไปใช้ไปกับ LG
             <span>เริ่ม ฿149/เดือน · ไม่ล็อกวงเงินบัตรเครดิต</span>
           </h1>
           <p className="hv-lead">
             เครื่องใหม่ 100% ส่งตรงจาก LG Thailand ติดตั้งฟรีถึงบ้าน
-            พร้อมทีมช่าง LG ดูแล ล้าง ซ่อม อะไหล่ฟรีตลอดสัญญา
+            พร้อมทีมช่างผู้เชี่ยวชาญ LG ดูแล ล้าง ซ่อม อะไหล่ฟรีตลอดสัญญาบริการ
           </p>
           <div className="hv-ctas">
-            <a className="btn btn-line btn-lg" href={site.line} target="_blank" rel="noopener">
-              <span className="line-dot">LINE</span> สมัครผ่าน LINE — ปรึกษาฟรี
+            <a
+              className="btn btn-line btn-lg"
+              href={site.line}
+              target="_blank"
+              rel="noopener"
+            >
+              <img className="line-dot" src="/line-icon.svg" alt="" /> สมัครผ่าน LINE — ปรึกษาฟรี
             </a>
-            <Link className="btn btn-ghost btn-lg" href="/products">ดูสินค้า + ราคาทั้งหมด</Link>
-            <a className="hv-phone" href={site.phoneHref}>☎ {site.phone}</a>
+            <a
+              className="btn btn-facebook btn-lg"
+              href={site.facebook}
+              target="_blank"
+              rel="noopener"
+            >
+              <img className="line-dot" src="/facebook-icon.svg" alt="" /> Facebook
+            </a>
+            <a
+              className="btn btn-instagram btn-lg"
+              href={site.instagram}
+              target="_blank"
+              rel="noopener"
+            >
+              <img className="line-dot" src="/instagram-icon.svg" alt="" /> Instagram
+            </a>
+            <Link className="btn btn-ghost btn-lg" href="/products">
+              ดูสินค้า + ราคาทั้งหมด
+            </Link>
+            <span className="hv-phone">
+              ☎ <a href={site.phoneHref}>{site.phone}</a>
+              {site.phone2 && (
+                <>
+                  ,<a href={site.phone2Href}>{site.phone2}</a>
+                </>
+              )}
+            </span>
           </div>
           <div className="hv-trust">
             <span className="hv-chip">
-              <span className="star">★</span> {reviews.rating} · {reviews.count} รีวิวจากลูกค้าจริง
+              <span className="star">★</span> {reviews.rating} · {reviews.count}{" "}
+              รีวิวจากลูกค้าจริง
             </span>
-            {["ติดตั้งฟรี", "ล้าง ซ่อม อะไหล่ฟรี", "ประกัน 5–7 ปี", "เครื่องใหม่ 100%"].map((t) => (
-              <span className="hv-chip" key={t}>✓ {t}</span>
+            {[
+              "ติดตั้งฟรี",
+              "ล้าง ซ่อม อะไหล่ฟรี",
+              "ประกัน 5–7 ปี",
+              "เครื่องใหม่ 100%",
+            ].map((t) => (
+              <span className="hv-chip" key={t}>
+                ✓ {t}
+              </span>
             ))}
           </div>
         </div>
-        <div className="hv-scroll" aria-hidden="true">เลื่อนดูเพิ่มเติม ↓</div>
+        <div className="hv-scroll" aria-hidden="true">
+          เลื่อนดูเพิ่มเติม ↓
+        </div>
       </section>
 
       <section style={{ padding: "28px 0 0" }}>
@@ -97,7 +215,8 @@ export default function HomePage() {
         </div>
         <div className="container">
           <div className="warning-note">
-            <b>⚠ โปรดระวังมิจฉาชีพ</b> — ติดต่อผ่านช่องทางทางการของเราเท่านั้น · {site.dealer}
+            <b>⚠ โปรดระวังมิจฉาชีพ</b> — ติดต่อผ่านช่องทางทางการของเราเท่านั้น ·{" "}
+            {site.dealer}
           </div>
         </div>
       </section>
@@ -121,7 +240,9 @@ export default function HomePage() {
               <div className="kicker">Popular this month</div>
               <h2>สินค้าแนะนำ</h2>
             </div>
-            <Link className="see-all" href="/products">ดูทั้งหมด →</Link>
+            <Link className="see-all" href="/products">
+              ดูทั้งหมด →
+            </Link>
           </div>
           <div className="product-grid">
             {featuredProducts().map((p) => (
@@ -138,16 +259,28 @@ export default function HomePage() {
               <div className="kicker">ครบทั้งบ้าน</div>
               <h2>เลือกหมวดสินค้า</h2>
             </div>
-            <Link className="see-all" href="/products">ดูทั้งหมด →</Link>
+            <Link className="see-all" href="/products">
+              ดูทั้งหมด →
+            </Link>
           </div>
           <div className="cat-grid">
             {categories.map((c) => {
               const photo = categoryImage(c.slug);
               return (
-                <Link className="cat-tile" href={`/products?category=${c.slug}`} key={c.slug}>
+                <Link
+                  className="cat-tile"
+                  href={`/products?category=${c.slug}`}
+                  key={c.slug}
+                >
                   {photo ? (
-                    <div className={c.slug === "microwave" ? "ph img-full" : "ph"}>
-                      <img src={imageSrc(photo)} alt={c.nameTh} loading="lazy" />
+                    <div
+                      className={c.slug === "microwave" ? "ph img-full" : "ph"}
+                    >
+                      <img
+                        src={imageSrc(photo)}
+                        alt={c.nameTh}
+                        loading="lazy"
+                      />
                     </div>
                   ) : (
                     <div className="em">{c.emoji}</div>
@@ -210,11 +343,16 @@ export default function HomePage() {
               <div className="kicker">Customer voices</div>
               <h2>เสียงจากลูกค้าจริง</h2>
               <div className="rating-summary">
-                <span className="stars">★★★★★</span> {reviews.rating} · {reviews.count}{" "}
-                รีวิวจากลูกค้าจริง
+                <span className="stars">★★★★★</span> {reviews.rating} ·{" "}
+                {reviews.count} รีวิวจากลูกค้าจริง
               </div>
             </div>
-            <a className="see-all" href={site.line} target="_blank" rel="noopener">
+            <a
+              className="see-all"
+              href={site.line}
+              target="_blank"
+              rel="noopener"
+            >
               สอบถามเพิ่มเติมทาง LINE →
             </a>
           </div>
@@ -222,7 +360,9 @@ export default function HomePage() {
             {reviews.items.map((r) => (
               <div className="review-card" key={r.name}>
                 <div className="head">
-                  <div className="avatar">{r.name.replace("คุณ", "").charAt(0)}</div>
+                  <div className="avatar">
+                    {r.name.replace("คุณ", "").charAt(0)}
+                  </div>
                   <div>
                     <div className="who">
                       {r.name} <span className="verified">✓ ลูกค้าจริง</span>
@@ -265,7 +405,9 @@ export default function HomePage() {
           <h2 style={{ fontSize: "clamp(24px,3vw,34px)", marginTop: 6 }}>
             โปรลด 50% สิ้นสุดในอีก…
           </h2>
-          <p style={{ marginTop: 8 }}>ตัดบัตรเครดิตเฉพาะรายเดือน · ติดตั้งฟรี · ดูแลตลอดสัญญา</p>
+          <p style={{ marginTop: 8 }}>
+            ตัดบัตรเครดิตเฉพาะรายเดือน · ติดตั้งฟรี · ดูแลตลอดสัญญา
+          </p>
           <Countdown />
         </div>
       </section>
@@ -278,12 +420,25 @@ export default function HomePage() {
             </div>
             <h2>พร้อมเริ่มใช้เครื่องใหม่ โดยไม่ต้องจ่ายก้อนใหญ่?</h2>
             <p>
-              ทักไลน์บอกรุ่นที่สนใจ ทีมงานคำนวณราคาและแนะนำแพ็กเกจที่คุ้มที่สุดสำหรับบ้านคุณ
-              — ปรึกษาฟรี ไม่มีข้อผูกมัด
+              ทักไลน์บอกรุ่นที่สนใจ
+              ทีมงานคำนวณราคาและแนะนำแพ็กเกจที่คุ้มที่สุดสำหรับบ้านคุณ —
+              ปรึกษาฟรี ไม่มีข้อผูกมัด
             </p>
-            <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
-              <a className="btn btn-line btn-lg" href={site.line} target="_blank" rel="noopener">
-                <span className="line-dot">LINE</span> สมัครผ่าน LINE
+            <div
+              style={{
+                display: "flex",
+                gap: 14,
+                justifyContent: "center",
+                flexWrap: "wrap",
+              }}
+            >
+              <a
+                className="btn btn-line btn-lg"
+                href={site.line}
+                target="_blank"
+                rel="noopener"
+              >
+                <img className="line-dot" src="/line-icon.svg" alt="" /> สมัครผ่าน LINE
               </a>
               <a className="btn btn-outline btn-lg" href={site.phoneHref}>
                 ☎ {site.phone}
@@ -291,7 +446,10 @@ export default function HomePage() {
             </div>
             <p style={{ marginTop: 22, marginBottom: 0, fontSize: "13.5px" }}>
               หรือ{" "}
-              <Link href="/products" style={{ textDecoration: "underline", color: "#fff" }}>
+              <Link
+                href="/products"
+                style={{ textDecoration: "underline", color: "#fff" }}
+              >
                 ดูสินค้าก่อน →
               </Link>
             </p>

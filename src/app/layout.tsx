@@ -66,7 +66,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="noopener"
           aria-label="ปรึกษาทาง LINE"
         >
-          LINE
+          <img src="/line-icon.svg" alt="" />
         </a>
       </body>
     </html>

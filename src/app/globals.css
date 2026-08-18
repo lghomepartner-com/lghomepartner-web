@@ -1,8 +1,8 @@
 /* LG Subscribe — static frontend */
 :root {
-  --red: #a50034;
-  --red-dark: #82002a;
-  --red-50: #faf1f4;
+  --red: #ea1917;
+  --red-dark: #c11310;
+  --red-50: #fdf1f0;
   --green: #059669;
   --green-50: #ecfdf5;
   --orange: #ea580c;
@@ -82,14 +82,23 @@ img { max-width: 100%; }
 .btn-outline:hover { background: var(--red-50); }
 .btn-line { background: var(--line-green); color: #fff; }
 .btn-line:hover { background: #05b34d; transform: translateY(-1px); }
+.btn-facebook { background: #1877f2; color: #fff; }
+.btn-facebook:hover { background: #1466cf; transform: translateY(-1px); }
+.btn-instagram {
+  background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf);
+  color: #fff;
+}
+.btn-instagram:hover { filter: brightness(.95); transform: translateY(-1px); }
 .btn-lg { padding: 15px 34px; font-size: 16.5px; }
 .btn-sm { padding: 9px 18px; font-size: 13.5px; }
 
 .line-dot {
-  width: 22px; height: 22px; border-radius: 50%;
-  background: #fff; color: var(--line-green);
-  display: inline-grid; place-items: center;
-  font-size: 9px; font-weight: 800;
+  width: 22px; height: 22px; border-radius: 6px;
+  display: inline-block; vertical-align: middle;
+}
+.line-ico-sm {
+  width: 16px; height: 16px; border-radius: 4px;
+  display: inline-block; vertical-align: -3px; margin-right: 2px;
 }
 
 .hamburger { display: none; background: none; border: 0; cursor: pointer; padding: 8px; }
@@ -130,6 +139,7 @@ img { max-width: 100%; }
   margin-top: 24px; line-height: 1.2;
   text-shadow: 0 2px 24px rgba(0, 0, 0, .45);
 }
+.hero-video h1 .h1-logo { height: 1.06em; vertical-align: -0.16em; display: inline-block; }
 .hero-video h1 span {
   display: block; font-size: .52em; font-weight: 700;
   color: #f3e9d2; margin-top: 12px;
@@ -141,6 +151,9 @@ img { max-width: 100%; }
 }
 .hv-ctas { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: center; }
 .hv-phone { font-weight: 700; color: #fff; font-size: 16px; }
+.hv-phone a { color: inherit; }
+.footer-phones { display: block; padding: 4px 0; }
+.site-footer .footer-phones a { display: inline; padding: 0; }
 .btn-ghost { border-color: #fff; color: #fff; background: rgba(255, 255, 255, .08); backdrop-filter: blur(4px); }
 .btn-ghost:hover { background: rgba(255, 255, 255, .2); }
 .hv-trust { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 36px; }
@@ -268,6 +281,7 @@ section.alt { background: var(--bg-deep); }
 .pay-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .pay-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 26px; text-align: center; box-shadow: var(--shadow); }
 .pay-card .ico { font-size: 34px; }
+.pay-card .card-photo { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 12px; }
 .pay-card h3 { margin: 10px 0 4px; font-size: 17px; }
 .pay-card p { font-size: 14px; }
 
@@ -293,16 +307,40 @@ section.alt { background: var(--bg-deep); }
 .site-footer a:hover { color: #fff; }
 .footer-bottom { border-top: 1px solid #374151; margin-top: 40px; padding-top: 20px; font-size: 12.5px; color: #9ca3af; display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; }
 
+/* promo popup */
+.promo-popup-overlay {
+  position: fixed; inset: 0; z-index: 100;
+  background: rgba(28, 25, 23, .55);
+  display: grid; place-items: center; padding: 20px;
+}
+.promo-popup { position: relative; max-width: min(92vw, 420px); }
+.promo-popup img {
+  display: block; width: 100%; height: auto; max-height: 82vh;
+  object-fit: contain; border-radius: 16px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .35);
+}
+.promo-popup-close {
+  position: absolute; top: -13px; right: -13px; z-index: 1;
+  width: 36px; height: 36px; border-radius: 50%; border: 0;
+  background: #fff; color: var(--heading);
+  font-size: 22px; line-height: 1;
+  display: grid; place-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .25);
+  cursor: pointer;
+}
+.promo-popup-close:hover { background: var(--red-50); }
+
 /* floating LINE */
 .float-line {
   position: fixed; right: 22px; bottom: 22px; z-index: 60;
   width: 62px; height: 62px; border-radius: 50%;
-  background: var(--line-green); color: #fff;
+  background: var(--line-green);
   display: grid; place-items: center;
-  font-weight: 800; font-size: 15px;
+  overflow: hidden;
   box-shadow: 0 8px 24px rgba(6, 199, 85, .45);
   transition: transform .2s;
 }
+.float-line img { width: 100%; height: 100%; object-fit: cover; }
 .float-line:hover { transform: scale(1.08); }
 
 /* ---------- catalog page ---------- */

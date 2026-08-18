@@ -286,7 +286,7 @@ export default function Calculator() {
             <h3>ตัวเลขตรงใจแล้วใช่ไหม?</h3>
             <p style={{ fontSize: 14 }}>ทักไลน์พร้อมชื่อรุ่น รับใบเสนอราคาจริงภายในวันเดียว</p>
             <a className="btn btn-line btn-lg mt-2" href={site.line} target="_blank" rel="noopener">
-              <span className="line-dot">LINE</span> รับใบเสนอราคาทาง LINE
+              <img className="line-dot" src="/line-icon.svg" alt="" /> รับใบเสนอราคาทาง LINE
             </a>
           </div>
         </div>

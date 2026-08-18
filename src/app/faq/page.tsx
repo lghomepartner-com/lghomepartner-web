@@ -72,7 +72,7 @@ export default function FaqPage() {
               ทักไลน์ถามได้เลย ทีมงานตอบทุกวัน — ปรึกษาฟรี ไม่มีข้อผูกมัด
             </p>
             <a className="btn btn-line btn-lg mt-2" href={site.line} target="_blank" rel="noopener">
-              <span className="line-dot">LINE</span> ถามทาง LINE เลย
+              <img className="line-dot" src="/line-icon.svg" alt="" /> ถามทาง LINE เลย
             </a>
           </div>
         </div>

@@ -255,7 +255,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
                   และแนะนำแผนที่เหมาะกับบ้านคุณ
                 </p>
                 <a className="btn btn-line mt-2" href={site.line} target="_blank" rel="noopener">
-                  <span className="line-dot">LINE</span> สมัครรุ่นนี้ผ่าน LINE
+                  <img className="line-dot" src="/line-icon.svg" alt="" /> สมัครรุ่นนี้ผ่าน LINE
                 </a>
               </div>
             </div>

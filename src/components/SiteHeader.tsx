@@ -50,7 +50,7 @@ export default function SiteHeader({ site }: { site: SiteConfig }) {
           target="_blank"
           rel="noopener"
         >
-          <span className="line-dot">LINE</span> สมัครผ่าน LINE
+          <img className="line-dot" src="/line-icon.svg" alt="" /> สมัครผ่าน LINE
         </a>
         <button
           className="hamburger"
